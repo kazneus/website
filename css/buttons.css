@@ -1,0 +1,174 @@
+
+/*
+SCROLL-BUTTON OPTIONS: Collected options relevant to Noah's Homepage Template
+
+*/
+
+/* ==================== Button Options: Bootstrap ==================== */
+.btn {
+  display: inline-block;
+  /* Orient Image Within Button */
+  padding: 10px 15px;
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-outline {
+    margin-top: 15px;
+    border: solid 2px #fff;
+    font-size: 20px;
+    color: #fff;
+    background: 0 0;
+    transition: all .3s ease-in-out;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    border: solid 2px #fff;
+    /*color: #18bc9c;*/
+    /*background: #fff;*/
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+    outline: 0;
+}
+
+/* ==================== ScrollButton Options start ==================== */
+
+.btn-primary {
+  color: #fff;
+  /*background-color: #337ab7;*/
+  /*border-color: #2e6da4;*/
+  background-color: #802200;
+  border-color: #802200;
+  margin: 30px;
+}
+
+.scroll-top .btn-primary {
+  margin: 10px;
+  margin-left: 0px;
+}
+
+.btn-lg,
+.btn-lg:hover,
+.btn-lg:focus,
+.btn-lg:active {
+  color: #fff;
+  /*background-color: #337ab7;*/
+  /*border-color: #2e6da4;*/
+  background-color: #802200;
+  border-color: #802200;
+  margin: 30px;
+  margin-left: 0px;
+  min-width: 150px;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  /*background-color: #286090;*/
+  /*border-color: #122b40;*/
+  background-color: #802200;
+  border-color: #802200;
+}
+.btn-primary:hover {
+  color: #fff;
+  /*background-color: #286090;*/
+  /*border-color: #204d74;*/
+  background-color: #802200;
+  border-color: #802200;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  /*background-color: #286090;*/
+  /*border-color: #204d74;*/
+  background-color: #802200;
+  border-color: #802200;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  /*background-color: #204d74;*/
+  /*border-color: #122b40;*/
+  background-color: #802200;
+  border-color: #802200;
+}
+
+/* ==================== ScrollButton Options end ==================== */
+
+/* ==================== Button Options: Freelancer ==================== */
+.btn-outline {
+    margin-top: 15px;
+    border: solid 2px #fff;
+    font-size: 20px;
+    color: #fff;
+    background: 0 0;
+    transition: all .2s ease-in-out;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    background-color: #802200;
+    border-color: #802200;
+    /*border: solid 2px #fff;*/
+    /*color: #18bc9c;*/
+    /*background: #fff;*/
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+    outline: 0;
+}
+
+.scroll-top {
+    z-index: 1049;
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    width: 50px;
+    height: 50px;
+}
+
+.scroll-top .btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.scroll-top .btn:focus {
+    outline: 0;
+}

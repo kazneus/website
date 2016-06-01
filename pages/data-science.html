@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Noah Rosenheck Data Science Portfolio</title>
+    <meta name="description" content="Noah Rosenheck Data Science Project: Unsupervised analysis with SciPy and Modal (Musical Onset Database And Library) of audio data extracted from a video file to predict an event based on the profile of its audio waveform.">
+
+    <meta name="author" content="Noah Rosenheck">
+
+    <meta name="keywords" content="data science, audio analysis, mathematical modeling, SciPy, Fourier Transformation, modal, audio event categorization">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="../css/template.css" rel="stylesheet">
+
+    <link href="../css/navbar.css" rel="stylesheet">
+    <link href="../css/sidebarPlus.css" rel="stylesheet">
+    <link href="../css/buttons.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top" class="index">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarHeader" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">NOAH ROSENHECK</a>
+        </div>
+        <div id="navbarHeader" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="ux-design.html">UX Design</a>
+            </li>
+            <li class="active">
+              <a href="#page-top">Data Science<span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a href="noah-rosenheck-resume.html">Resume</a>
+            </li>
+            <li>
+              <a href="contact-me.html">Contact</a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div id="wrapper">
+
+      <!-- sidebar -->
+      <div id="sidebar-wrapper">
+        <nav class="sidebar-nav">
+          <ul id="sidebar" class="nav page-scroll">
+            
+            <!-- <li class="sidebar-brand">
+              <a href="#page-top">My Work</a>
+            </li> -->
+            <li>
+              <a href="#abstract">Abstract</a>
+            </li>
+            <li>
+              <a href="#theGamePlan">The Game Plan</a>
+            </li>
+            <li>
+              <a href="#whatActuallyHappened">Step 1</a>
+            </li>
+            <li>
+              <a href="#step2">Step 2</a>
+            </li>
+            <li>
+              <a href="#step3">Step 3</a>
+            </li>
+            <li>
+              <a href="#step4">Step 4</a>
+            </li>
+            <li>
+              <a href="#step5">Step 5</a>
+            </li>
+            <li>
+              <a href="#step6">Step 6</a>
+            </li>
+            <li>
+              <a href="#downloadProject">Download</a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+
+
+          <!-- Header -->
+          <div class="topSection row">
+            <div class="container-fluid col-lg-12">
+              <h1>Predicting an Event from Audio Data</h1>
+            </div>
+          </div>
+
+
+
+
+          <section id="abstract">
+            <div class="topSection container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h2>Abstract</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <p>The goal of my project was to develop an algorithm to predict an event from audio data.</p>
+                  <p>Specficially: within some margin of error, I'd like to predict if a door has closed based on the sound a door makes when it closes.
+                  </p>
+                  <p>This was my final project for the 66-hour Data Science course at General Assembly</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="theGamePlan">
+            <div class="topSection container-fluid">
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h2>The Game Plan</h2>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  
+                  <ol class="numberList">
+                    <li>
+                      Locate the data set
+                    </li>
+                    <li>
+                      Read the data into Python
+                    </li>
+                    <li>
+                      'Clean' the data with Fast Fourier Transform and/or other audio analysis tools
+                    </li>
+                    <li>
+                      Perform Unsupervised analysis to try to define what a cluster of similarly 'shaped' data looks like with respect to frequency, time, and potentially amplitude or other variables
+                    </li>
+                    <li>
+                      Perform supervised, categorical analysis to divide the data into a series of groups based on where the data set the previously defined 'shape' fits, and what the margin of error of the fit is.
+                    </li>
+                    <li>
+                      See how well the events actually predict door closing
+                    </li>
+                  </ol>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <div id="whatActuallyHappened" class="topSection container-fluid row">
+            <div class="col-lg-12">
+              <h1>What actually happened:</h1>
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+              <p>The challenges I encountered and how I overcame them</p>
+            </div>
+          </div>
+
+          <section id="step1" class="topSection container-fluid row">
+            <div class="col-lg-12">
+              <h2>Step 1: Locate the Data</h2>
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+              <p>I found a youtube video of somebody recording themselves opening and closing a door over and over for 3 hours</p>
+            </div>
+
+            <div id="portfolio" class="container-fluid row">
+              <div class="col-md-6 col-md-offset-3 portfolio-item">
+                <h2 class="text-center">Screenshot of the Video</h2>
+                <a href="#youtubeScreenShot" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/screenShot.jpg" class="img-responsive" alt="">
+                </a>
+                <p>The video can be found here:</p>
+                <a href="https://www.youtube.com/watch?v=tULM0KBx7i8">
+                  <p>https://www.youtube.com/watch?v=tULM0KBx7i8</p>
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+
+          <section id="step2" class="topSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Step 2: Read the Data into Python/SciPy</h2>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <p>I decided to use a python based command-line program called youtube-dl to download the audio from the youtube video.</p>
+              <p>The youtube-dl GitHub can be found here</p>
+              <div class="col-md-offset-1">
+                <a href="https://github.com/rg3/youtube-dl">
+                  <p>https://github.com/rg3/youtube-dl</p>
+                </a>
+              </div>
+            </div> 
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <h4>Advantages of youtube-dl</h4>
+              <dl class="dl-horizontal sideList">
+                <dt>File Size</dt>
+                <dd>One website that will download from a YouTube url to your computer estimated the audiofile of the 3-hour YouTube video would be 6 GB</dd>
+                <dt>Efficiency</dt>
+                <dd>The terminal will be much more efficient than using a browser to download the data</dd>
+                <dt>Control</dt>
+                <dd>Using youtube-dl I have more direct control over the quality of the file that is downloaded</dd>
+              </dl>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              
+              <h4>Issue</h4>
+              <div class="col-md-offset-1 row">
+                <p>I could only read an audio file into SciPy as a .wav file, but the audio from the youtube video is only available for download as .webm or .m4a</p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>youtube-dl has audio/visual post-processing functionality that can save the file being downloaded to just about any file type I need (including .wav)</p>
+              </div>
+
+              <h4>Issue</h4>
+              <div class="col-md-offset-1 row">
+                <p>youtube-dl's audio/visual post-processing functionality requires the instillation of either FFmpeg or Libav</p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>I chose to install FFmpeg. Since FFmpeg uses the Libav codec, an installation of FFmpeg includes Libav.</p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>youtube-dl has audio/visual post-processing functionality that can save the file being downloaded to just about any file type I need (including .wav)</p>
+              </div>
+
+              <p>A build of FFmpeg for just about any operating system can be downloaded from here</p>
+              <div class="col-md-offset-1">
+                <a href="https://www.ffmpeg.org">
+                  <p>https://www.ffmpeg.org</p>
+                </a>
+              </div>
+            </div>
+          
+          </section>
+
+          <section id="step3" class="topSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Step 3: 'Clean' the Data</h2>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <p>Initially I wanted to use a comprehensive open-source C++ audio analysis library called Essentia to analyze the audio data.</p>
+              <p>Essentia includes a collection of algorithms designed around extracting all sorts of features from audio files. The library also includes Python bindings, comprehensive documentation, and even a Python tutorial.</p>
+
+              <p>Essentia can be downloaded here</p>
+              <div class="col-md-offset-1">
+                <a href="http://essentia.upf.edu">
+                  <p>http://essentia.upf.edu</p>
+                </a>
+              </div>
+
+              <h4>Issue</h4>
+              <div class="col-md-offset-1 row">
+                <p>Unfortunately I was unable to get a working install of Essentia on my computer</p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>SciPy also has a comprehensive library of functions that are used in audio analysis, as well as really great documentation on how to use the algorithms.</p>
+                <p>However, SciPy is not wrapped as nicely as Essentia is and the algorithms for the sort of cleaning I wanted to do on the audio data had to be written from scratch..</p>
+              </div>
+              
+              <p>SciPy comes almost entirely pre-packaged in Pandas, and can be found here for direct download</p>
+              <div class="col-md-offset-1">
+                <a href="http://www.scipy.org">
+                  <p>http://www.scipy.org</p>
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+          <section id="step4" class="topSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Step 4: Scale Back</h2>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <h4>Issue</h4>
+              <div class="col-md-offset-1 row">
+                <p>After reading the .wav file I created from the video of the door opening and closing, things got a little out of hand.</p>
+              </div>
+
+              <p>When you read a .wav file into python using scipy.io.wavfile.read('file_name.wav') it gives you a tuple where</p>
+              <div class="col-md-offset-1 row">
+                <p>The 0th location is an integer value corresponding to the sampling rate (the number of numbers per second of audio data in the file)</p>
+                <p>The 1st location is a numpy array containing a discrete numerical representation of the waveform.</p>
+              </div>
+
+              <p>In my case the numpy array consisted of arrays of two integers, each corresponding to one of two audio channels present in the .wav file. After splitting the channels I ended up with two very long arrays to look at. Specifically,</p>
+              <div class="col-md-offset-1 row">
+                <p>3 hours and 22 seconds of audio data at a sample rate of 44100 meant <strong>each audio channel was 477,271,040 integers long</strong></p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>I decided to change the course of the project towards more of a 'proof of concept.'</p>
+                <p>I picked the 15 second slice of audio from 40 to 65 seconds to focus on.</p>
+              </div>
+            </div>
+
+            <div id="portfolio" class="container-fluid row">
+              <div class="col-sm-8 col-sm-offset-2 portfolio-item">
+                <h2 class="text-center">Audio from 40 to 65 seconds</h2>
+                <a href="#audio40to65" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/audioSample40to65.png" class="img-responsive" alt="">
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+          <section id="step5" class="topSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Step 5: Strategize</h2>
+            </div>
+            
+            <div class="col-md-10 col-md-offset-1 row">
+              <p>One of my origional goals that I thought was very important was to try to come up with a way to have the audio data itself predict when an event was happening, as opposed to marking the timestamps of when a door was opened or closed by hand.</p>
+
+              <h4>My New Strategy</h4>
+              <div class="col-md-offset-1 row">
+                <p>Generate timestamps for the onset and end of each event of the type I was interested in.</p>
+                <p>Consolidate the audio data denoted by those timestamps.</p>
+                <p>Run a short term Fourier transformation (stft) on consolidated audio data to generate a frequency spectrum that might be overall characteristic of the audio event I am interested in</p>
+                <p>Perform an inverse Fourier transformation on the frequency spectrum generated in the previous step to get a characteristic shape for the audio of the door closing!</p>
+              </div>
+            </div>
+
+          </section>
+
+          <section id="step6" class="topSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Step 6: Timestamps</h2>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <p>First I tried to use an auto-correlation algorithm to heighten the areas in a given audio channel that were repeated. This proved marginally sucessful at best.</p>
+              
+              <h4>Issue</h4>
+              <div class="col-md-offset-1 row">
+                <p>An auto-correlation took hours to compute for my little 15 second audio slice.</p>
+                <p>There was no way I could use the same technique on the origional array which had over 477 million integers. For each audio channel.</p>
+              </div>
+
+              <h4>Resolution</h4>
+              <div class="col-md-offset-1 row">
+                <p>I downloaded program called Modal, which stands for Musical Onset Database And Library</p>
+              </div>
+
+              <p>Modal can be downloaded from either of the following links</p>
+              <div class="col-md-offset-1">
+                <a href="https://modal.readthedocs.io/en/latest/">
+                  <p>https://modal.readthedocs.io/en/latest/</p>
+                </a>
+              </div>
+              <div class="col-md-offset-1">
+                <a href="https://github.com/johnglover/modal">
+                  <p>https://github.com/johnglover/modal</p>
+                </a>
+              </div>
+
+              <p>Modal comes equipped with a number of methods to detect the onset of an audio event.</p>
+              <p>The two functions I found most useful for my project were the ComplexODF and LPEnergyODF.</p>
+              <p>To get timestamps for the end of the audio event, I simply flipped the array and ran the onset detection algorithms on the reversed dataset.</p>
+            </div>
+
+            <div id="portfolio" class="row">             
+              <div class="col-sm-6 container portfolio-item">
+                <h2 class="text-center">Onset Detection</h2>
+                <a href="#onsetDetect" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/onsetDetection.png" class="img-responsive" alt="">
+                </a>
+              </div>
+
+              <div class="col-sm-6 container portfolio-item">
+                <h2 class="text-center">Rev. Onset Detection</h2>
+                <a href="#revOnsetDetect" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/reverseOnsetDetection.png" class="img-responsive" alt="">
+                </a>
+              </div>
+
+              <div class="col-sm-6 container portfolio-item">
+                <h2 class="text-center">Predicted Event Start and Stops</h2>
+                <a href="#predStartStop" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/predictedStartStops.png" class="img-responsive" alt="">
+                </a>
+              </div>
+
+              <div class="col-sm-6 container portfolio-item">
+                <h2 class="text-center">Predicted and Actual Start/Stop Overlays</h2>
+                <a href="#audioStartStop" class="portfolio-link" data-toggle="modal">
+                  <img src="../img/dataScience/audioWithStartStops.png" class="img-responsive" alt="">
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+          <section id="downloadProject" class="topSection bottomSection container-fluid row">
+            
+            <div class="col-lg-12">
+              <h2>Download Project</h2>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1 row">
+              <p>My Project can be downloaded from my GitHub</p>
+              <div class="col-md-offset-1">
+                <a href="https://github.com/kazneus">
+                  <p>(Coming Soon)</p>
+                </a>
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <div class="portfolio-modal modal fade" id="youtubeScreenShot" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Screenshot from the YouTube Video</h2>
+                <div>
+                  <img src="../img/dataScience/screenShot.jpg" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-lg" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="audio40to65" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Audio Waveform from 40 to 65 Seconds</h2>
+                <div>
+                  <img src="../img/dataScience/audioSample40to65.png" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-lg" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="onsetDetect" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Onset Detection</h2>
+                <div>
+                  <img src="../img/dataScience/onsetDetection.png" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="revOnsetDetect" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Reverse Onset Detection</h2>
+                <div>
+                  <img src="../img/dataScience/reverseOnsetDetection.png" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-lg" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="predStartStop" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Predicted Audio-Event Start and Stop Times</h2>
+                <div>
+                  <img src="../img/dataScience/predictedStartStops.png" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="audioStartStop" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        
+        <div class="containter">
+          <div class="close-modal pull-right" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="topSection row">
+            <div class="col-lg-12">
+              <div class="modal-body">
+                <h2>Predicted and Actual Start/Stop Overlays</h2>
+                <div>
+                  <img src="../img/dataScience/audioWithStartStops.png" class="img-centered" alt="" data-dismiss="modal">
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <!-- <div class="scroll-top page-scroll visible-xs visible-sm"> -->
+    <div class="scroll-top page-scroll visible-xs">
+      <a class="btn btn-primary" href="#page-top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript ====================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="../js/jquery.js"><\/script>')</script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../js/classie.js"></script>
+    <script src="../js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+    <script src="../js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/SCRATCH.js"></script>
+
+    <script>
+    $('body').scrollspy({
+    target: '.sidebar-nav',
+    offset: 40
+    });
+    </script>
+
+
+  </body>
+</html>
